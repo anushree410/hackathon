@@ -52,10 +52,10 @@ public class CaretakerService {
     }
 
     public Carer getCaretakerByEmail(String email) {
-        Optional<Carer> optionalCarer = carerRepository.findByEmail(email);
+        Carer carer = carerRepository.findByEmail(email);
         // Returns the Patient object if present
         //            throw new NoSuchElementException("No Patient found with email: " + email);
-        return optionalCarer.orElse(null);
+        return carer;
     }
     
 }

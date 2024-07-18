@@ -8,9 +8,5 @@ import java.util.Optional;
 
 public interface ProfessionalRepository extends JpaRepository<Professional, Integer> {
 
-    default Optional<Professional> findByEmail(String email) {
-        return findAll().stream()
-                .filter(professional -> professional.getEmail().equals(email))
-                .findFirst();
-    }
+    Professional findByEmail(String email);
 }

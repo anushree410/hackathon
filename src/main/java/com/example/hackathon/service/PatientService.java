@@ -89,23 +89,23 @@ public class PatientService {
     }
 
     @Transactional
-    public Patient createPatient(PatientInfo PatientDto) {
+    public Patient createPatient(PatientInfo patientInfo) {
         Patient newPatient = new Patient();
-        newPatient.setName(PatientDto.getName());
-        newPatient.setEmail(PatientDto.getEmail());
-        newPatient.setPhone(PatientDto.getPhone());
-        newPatient.setAddress(PatientDto.getAddress());
-        newPatient.setImage(PatientDto.getImage());
-        newPatient.setAge(PatientDto.getAge());
-        newPatient.setGender(PatientDto.getGender());
+        newPatient.setName(patientInfo.getName());
+        newPatient.setEmail(patientInfo.getEmail());
+        newPatient.setPhone(patientInfo.getPhone());
+        newPatient.setAddress(patientInfo.getAddress());
+        newPatient.setImage(patientInfo.getImage());
+        newPatient.setAge(patientInfo.getAge());
+        newPatient.setGender(patientInfo.getGender());
         return patientRepository.save(newPatient);
     }
 
     public Patient getPatientByEmail(String email) {
-        Optional<Patient> optionalPatient = patientRepository.findByEmail(email);
+        Patient patient = patientRepository.findByEmail(email);
         // Returns the Patient object if present
         //            throw new NoSuchElementException("No Patient found with email: " + email);
-        return optionalPatient.orElse(null);
+        return patient;
     }
 
 

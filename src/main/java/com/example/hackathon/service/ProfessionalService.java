@@ -60,9 +60,9 @@ public class ProfessionalService {
     }
 
     public Professional getProfessionalByEmail(String email) {
-        Optional<Professional> optionalProfessional = professionalRepository.findByEmail(email);
+        Professional professional = professionalRepository.findByEmail(email);
         // Returns the Patient object if present
         //            throw new NoSuchElementException("No Patient found with email: " + email);
-        return optionalProfessional.orElse(null);
+        return professional;
     }
 }

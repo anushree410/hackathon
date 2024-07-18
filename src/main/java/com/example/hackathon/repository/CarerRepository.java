@@ -22,12 +22,8 @@ public interface CarerRepository extends JpaRepository<Carer, Integer> {
     Integer updatePatientId(@Param("patientId") Integer patientId, @Param("carerId") Integer carerId);
     
     Optional<Carer> findByName(String name);
+
+    Carer findByEmail(String email);
     
     Optional<List<Carer>> findByPatientId(Integer patientId);
-
-    default Optional<Carer> findByEmail(String email) {
-        return findAll().stream()
-                .filter(carer -> carer.getEmail().equals(email))
-                .findFirst();
-    }
 }

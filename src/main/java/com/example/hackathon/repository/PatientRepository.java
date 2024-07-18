@@ -9,9 +9,6 @@ public interface PatientRepository  extends JpaRepository<Patient, Integer> {
 
 
     Patient findByName(String patientName);
-    default Optional<Patient> findByEmail(String email) {
-        return findAll().stream()
-                .filter(patient -> patient.getEmail().equals(email))
-                .findFirst();
-    }
+
+    Patient findByEmail(String email);
 }
