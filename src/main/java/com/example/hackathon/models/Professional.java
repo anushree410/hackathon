@@ -14,7 +14,8 @@ public class Professional {
     private String speciality;
     private String workingDays;
     private String workingSlots;
-    
+    private String email;
+
     public Integer getId() {
         return id;
     }
@@ -54,5 +55,9 @@ public class Professional {
     public void setWorkingSlots(String workingSlots) {
         this.workingSlots = workingSlots;
     }
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email;}
     // Getters and Setters
 }

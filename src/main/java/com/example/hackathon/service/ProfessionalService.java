@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProfessionalService {
@@ -56,5 +57,12 @@ public class ProfessionalService {
         medicinesRepository.save(medicine);
 
         return "Medicines added successfully!";
+    }
+
+    public Professional getProfessionalByEmail(String email) {
+        Optional<Professional> optionalProfessional = professionalRepository.findByEmail(email);
+        // Returns the Patient object if present
+        //            throw new NoSuchElementException("No Patient found with email: " + email);
+        return optionalProfessional.orElse(null);
     }
 }
