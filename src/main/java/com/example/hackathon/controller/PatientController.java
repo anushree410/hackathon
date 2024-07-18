@@ -69,5 +69,26 @@ public class PatientController {
         }
         return new ResponseEntity<>(patient.getId(), HttpStatus.OK);
     }
+    @GetMapping("/user/{id}/getDetails")
+    public String getUserDetails(@PathVariable("id") Integer id) {
+        Patient patient = patientService.getPatient(id);
+        if (patient == null) {
+            return "Patient not found";
+        }
+
+        StringBuilder message = new StringBuilder("I am ");
+        message.append(patient.getName()).append(" and my caretakers are:\n");
+
+        List<Carer> caretakers = patientService.getCarers(id);
+        for (int i = 0; i < caretakers.size(); i++) {
+            Carer caretaker = caretakers.get(i);
+            message.append(i + 1).append(") ").append(caretaker.getName()).append(": ").append(caretaker.getPhone());
+            if (i < caretakers.size() - 1) {
+                message.append("\n");
+            }
+        }
+
+        return message.toString();
+    }
 
 }

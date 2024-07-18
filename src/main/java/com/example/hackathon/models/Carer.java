@@ -24,7 +24,7 @@ public class Carer {
     private Patient patient;
     
     public Integer getId() {
-        return id;
+        return this.id;
     }
     
     public void setId(Integer id) {
@@ -32,7 +32,7 @@ public class Carer {
     }
     
     public String getName() {
-        return name;
+        return this.name;
     }
     
     public void setName(String name) {
@@ -40,7 +40,7 @@ public class Carer {
     }
     
     public String getEmail() {
-        return email;
+        return this.email;
     }
     
     public void setEmail(String email) {
@@ -48,7 +48,7 @@ public class Carer {
     }
     
     public String getPhone() {
-        return phone;
+        return this.phone;
     }
     
     public void setPhone(String phone) {
@@ -56,7 +56,7 @@ public class Carer {
     }
     
     public String getAddress() {
-        return address;
+        return this.address;
     }
     
     public void setAddress(String address) {
@@ -64,7 +64,7 @@ public class Carer {
     }
     
     public byte[] getImage() {
-        return image;
+        return this.image;
     }
     
     public void setImage(byte[] image) {
@@ -72,7 +72,7 @@ public class Carer {
     }
     
     public Integer getAge() {
-        return age;
+        return this.age;
     }
     
     public void setAge(Integer age) {
@@ -80,7 +80,7 @@ public class Carer {
     }
     
     public String getGender() {
-        return gender;
+        return this.gender;
     }
     
     public void setGender(String gender) {
@@ -88,7 +88,7 @@ public class Carer {
     }
     
     public Patient getPatient() {
-        return patient;
+        return this.patient;
     }
     
     public void setPatient(Patient patient) {

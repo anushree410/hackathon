@@ -1,5 +1,6 @@
 package com.example.hackathon.service;
 
+import com.example.hackathon.dto.LoginInfo;
 import com.example.hackathon.dto.SignupInfo;
 import com.example.hackathon.mapper.SignupInfoMapper;
 import com.example.hackathon.models.Carer;
@@ -45,6 +46,25 @@ public class SignupService {
             }
         }
 
+        return 0;
+    }
+    public Integer loginUser(LoginInfo loginInfo) {
+        if (Objects.nonNull(loginInfo)) {
+            switch (loginInfo.getRole()) {
+                case "Patient":
+                    var patient = patientRepository.findByEmail(loginInfo.getEmail());
+                    return Objects.isNull(patient) ? 0 : patient.getId();
+                case "Carer":
+                    var carer = carerRepository.findByEmail(loginInfo.getEmail());
+                    return Objects.isNull(carer) ? 0 : carer.getId();
+                case "Professional":
+                    var professional = professionalRepository.findByEmail(loginInfo.getEmail());
+                    return Objects.isNull(professional) ? 0 : professional.getId();
+                default:
+                    System.out.println("Provide appropriate role");
+                    break;
+            }
+        }
         return 0;
     }
 }

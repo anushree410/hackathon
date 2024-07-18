@@ -1,5 +1,6 @@
 package com.example.hackathon.controller;
 
+import com.example.hackathon.dto.LoginInfo;
 import com.example.hackathon.dto.SignupInfo;
 import com.example.hackathon.service.SignupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,4 +22,10 @@ public class SignUpController {
     public Integer signup(@RequestBody SignupInfo signupInfo) {
         return signupService.signupUser(signupInfo);
     }
+
+    @PostMapping("/login")
+    public Integer login(@RequestBody LoginInfo loginInfo) {
+        return signupService.loginUser(loginInfo);
+    }
+
 }
