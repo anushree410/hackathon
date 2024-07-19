@@ -1,5 +1,7 @@
 package com.example.hackathon.dto;
 
+import jakarta.persistence.Lob;
+
 public class SignupInfo {
 
     private String role;
@@ -21,6 +23,17 @@ public class SignupInfo {
     private String gender;
 
     private String speciality;
+
+    @Lob
+    private byte[] image;
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 
     public String getName() {
         return name;

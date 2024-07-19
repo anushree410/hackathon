@@ -2,8 +2,10 @@ package com.example.hackathon.controller;
 
 import com.example.hackathon.dto.LoginInfo;
 import com.example.hackathon.dto.SignupInfo;
+import com.example.hackathon.dto.SignupResponse;
 import com.example.hackathon.service.SignupService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,12 +21,12 @@ public class SignUpController {
     }
 
     @PostMapping("/signup")
-    public Integer signup(@RequestBody SignupInfo signupInfo) {
+    public SignupResponse signup(@RequestBody SignupInfo signupInfo) {
         return signupService.signupUser(signupInfo);
     }
 
     @PostMapping("/login")
-    public Integer login(@RequestBody LoginInfo loginInfo) {
+    public SignupResponse login(@RequestBody LoginInfo loginInfo) {
         return signupService.loginUser(loginInfo);
     }
 

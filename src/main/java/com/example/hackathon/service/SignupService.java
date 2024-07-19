@@ -2,6 +2,7 @@ package com.example.hackathon.service;
 
 import com.example.hackathon.dto.LoginInfo;
 import com.example.hackathon.dto.SignupInfo;
+import com.example.hackathon.dto.SignupResponse;
 import com.example.hackathon.mapper.SignupInfoMapper;
 import com.example.hackathon.models.Carer;
 import com.example.hackathon.models.Patient;
@@ -25,46 +26,55 @@ public class SignupService {
     private CarerRepository carerRepository;
     private final SignupInfoMapper signupInfoMapper=SignupInfoMapper.INSTANCE;
 
-    public Integer signupUser(SignupInfo signupInfo) {
+    public SignupResponse signupUser(SignupInfo signupInfo) {
+        SignupResponse signupResponse = new SignupResponse();
         if (Objects.nonNull(signupInfo)) {
             switch (signupInfo.getRole()) {
                 case "Patient":
                     Patient patient = signupInfoMapper.fromSignupInfoToPatient(signupInfo);
                     patientRepository.save(patient);
-                    return patientRepository.findByEmail(patient.getEmail()).getId();
+                    Patient patient1 = patientRepository.findByEmail(patient.getEmail());
+                    signupResponse.setId(patient1.getId());
+                    return signupResponse;
                 case "Carer":
                     Carer carer = signupInfoMapper.fromSignupInfoToCarer(signupInfo);
                     carerRepository.save(carer);
-                    return carerRepository.findByEmail(carer.getEmail()).getId();
+                    signupResponse.setId(carerRepository.findByEmail(carer.getEmail()).getId());
+                    return signupResponse;
                 case "Professional":
                     Professional professional = signupInfoMapper.fromSignupInfoToProfessional(signupInfo);
                     professionalRepository.save(professional);
-                    return professionalRepository.findByEmail(professional.getEmail()).getId();
+                    signupResponse.setId(professionalRepository.findByEmail(professional.getEmail()).getId());
+                    return signupResponse;
                 default:
                     System.out.println("Provide appropriate role");
                     break;
             }
         }
 
-        return 0;
+        return signupResponse;
     }
-    public Integer loginUser(LoginInfo loginInfo) {
+    public SignupResponse loginUser(LoginInfo loginInfo) {
+        SignupResponse signupResponse = new SignupResponse();
         if (Objects.nonNull(loginInfo)) {
             switch (loginInfo.getRole()) {
                 case "Patient":
-                    var patient = patientRepository.findByEmail(loginInfo.getEmail());
-                    return Objects.isNull(patient) ? 0 : patient.getId();
+                    Patient patient = patientRepository.findByEmail(loginInfo.getEmail());
+                    signupResponse.setId(patient.getId());
+                    return signupResponse;
                 case "Carer":
-                    var carer = carerRepository.findByEmail(loginInfo.getEmail());
-                    return Objects.isNull(carer) ? 0 : carer.getId();
+                    Carer carer = carerRepository.findByEmail(loginInfo.getEmail());
+                    signupResponse.setId(carer.getId());
+                    return signupResponse;
                 case "Professional":
-                    var professional = professionalRepository.findByEmail(loginInfo.getEmail());
-                    return Objects.isNull(professional) ? 0 : professional.getId();
+                    Professional professional = professionalRepository.findByEmail(loginInfo.getEmail());
+                    signupResponse.setId(professional.getId());
+                    return signupResponse;
                 default:
                     System.out.println("Provide appropriate role");
                     break;
             }
         }
-        return 0;
+        return signupResponse;
     }
 }

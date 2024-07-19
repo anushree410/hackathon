@@ -69,7 +69,7 @@ public class PatientController {
         }
         return new ResponseEntity<>(patient.getId(), HttpStatus.OK);
     }
-    @GetMapping("/user/{id}/getDetails")
+    @GetMapping("/{id}/getDetails")
     public String getUserDetails(@PathVariable("id") Integer id) {
         Patient patient = patientService.getPatient(id);
         if (patient == null) {

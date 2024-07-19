@@ -17,6 +17,9 @@ public class Medicines {
     private Date startDate;
     private Date endDate;
 
+    @JoinColumn(name = "patientId")
+    @ManyToOne
+    private Patient patient;
 
     public Patient getPatient() {
         return patient;
@@ -25,10 +28,6 @@ public class Medicines {
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
-
-    @JoinColumn(name = "patientId")
-    @ManyToOne
-    private Patient patient;
     
     public Integer getMedId() {
         return medId;
